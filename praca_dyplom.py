@@ -11,7 +11,10 @@ extrernal_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=extrernal_stylesheets)
 app.config.suppress_callback_exceptions = True
 
-df = pd.read_csv('./all_halfmaraton.csv', sep=(';'), encoding='windows-1250', index_col=0)
+url = 'https://raw.githubusercontent.com/rybinski92/halfmarathon_rzeszow/28031193fb3bd5bfc7a7692e31d891245ccc636c/all_halfmaraton.csv'
+df = pd.read_csv(url, sep=(';'), encoding='windows-1250', index_col=0)
+
+#df = pd.read_csv('./all_halfmaraton.csv', sep=(';'), encoding='windows-1250', index_col=0)
 
 
 
