@@ -133,9 +133,9 @@ podział_na_kluby = podział_na_kluby.drop([1338, 793, 1324, 0, 9])
 
 # lojalność zawodników
 zawodnicy_all = df.groupby('nazwisko').size()
-zawodnicy_all = pd.DataFrame(zawodnicy_all, columns=['Ilosc_edycji'])
+zawodnicy_all = pd.DataFrame(zawodnicy_all, columns=['Ilość edycji'])
 zawodnicy_all = zawodnicy_all.reset_index()
-zawodnicy_all = zawodnicy_all.sort_values('Ilosc_edycji', ascending=False)
+zawodnicy_all = zawodnicy_all.sort_values('Ilość edycji', ascending=False)
 zawodnicy_all = zawodnicy_all.head(8)
 
 merged_df = zawodnicy_all.merge(df, on='nazwisko')
@@ -143,7 +143,7 @@ merged_df = merged_df[['nazwisko', 'miasto']]
 merged_df['Index'] = merged_df.index
 merged_df = merged_df.loc[merged_df.groupby('nazwisko')['Index'].idxmin()]
 merged_df = merged_df.merge(zawodnicy_all, on='nazwisko')
-merged_df = merged_df[['nazwisko', 'miasto', 'Ilosc_edycji']]
+merged_df = merged_df[['nazwisko', 'miasto', 'Ilość edycji']]
 
 #
 dane_mapa = pd.DataFrame({
@@ -1006,23 +1006,38 @@ html.H5('Najpopularniejsze kluby sportowe'),
 
 # 7 zakładka - podsumowanie / autor
 adam_leyout = html.Div([
-    html.Div([
-    html.H5('Podsumowanie / wnioski'),
 
+    html.Div([
+    html.H5('Podsumowanie / wnioski', style={'background-color':'white', 'font-size': '30px', 'text-align': 'center'}),
     dcc.Markdown(
-        "Projkt ma na celu przeanalizowanie asd półmaratonu w Rzeszowie. Projekt powstał w celu obrony pracy dyplomowej na WSB"
+        "Projekt ma na celu przeanalizowanie biegów długodystansowych w Rzeszowie na przykładzie Półmaratonu Rzeszowskiego w ostatnich 10 latach. "
+        "W projekcie pokazano m.in. statystyki dotyczące: liczby uczestników, podział na płeć, kategorie wiekowe, najlepsze i najgorsze czasy czy "
+        "informacje skąd pochodzili zawodnicy. Dane z których korzystałem przy pisaniu tego projektu pochodzą ze strony: https://runrzeszow.pl/wyniki/polmaraton/. "
+        "Patrząc na otrzymywane wyniki można wysnuć kilka wniosków: od 2014 do 2019 roku półmaraton zwiększał swoją "
+        "liczebność oraz nie brakowało zawodników spoza Europy. Lata w okresie pandemii można skomentować krótko: bardzo mało zawodników, zawodnicy tylko z Polski, "
+        "słabsze czasy wśród zwycięzców. Aktualnie Półmaraton w Rzeszowie wrócił do liczebności z najlepszych lat, najwięcej bo ok. 30% zawodników pochodzi z Rzeszowa, "
+        "spora część zawodników przyjeżdża do stolicy podkarpacia z: Przemyśla, Dębicy, Krakowa, Stalowej Woli oraz z Lublina czy Warszawy. Obcokrajowcy natomiast "
+        "pojawiają się tylko z krajów ościennych. "
+        "Kobiet na półmaratonie jest zawsze niecałe 20% wszystkich uczestników. Najliczniejszą grupą wiekową są zawodnicy z przedziału 30-39 lat. Ponad 60% zawodników "
+        "pokonuje ten dystans w przedziale 1:30 - 2 godziny, średnia to 1:51:44. ", style={'margin': '5px'}
     )
 
-    ], style={'width': '49%', 'float': 'left', 'background-color': 'lightgray', 'text-align': 'center', 'margin': '5px', 'height': '90vh'}),
+    ], style={'width': '49%', 'float': 'left', 'background-color': 'white', 'text-align': 'left', 'margin': '5px', 'height': '90vh'}),
 
+    #html.H5('Autor - Adam Rybiński'),
     html.Div([
-    html.H5('Autor - Adam Rybiński'),
+    html.H5('Autor', style={'background-color':'white', 'font-size': '30px', 'text-align': 'center'}),
     dcc.Markdown(
-        "Projkt ma na celu przeanalizowanie asd półmaratonu w Rzeszowie. Projekt powstał w celu obrony pracy dyplomowej na WSB"
-    ),
-        #html.Img(src='C:/Users/User/PycharmProjects/test/AR_dyplom/AR_run.jpg')
+        "**Adam Rybiński** - absolwent Politechniki Rzeszowskiej im. Ignacego Łukasiewicza na kierunku: Matematyka. Aktualnie student "
+        "studiów podyplomowych na kierunku: Big Data. Inżynieria Danych, uczelnia: Uniwersytet WSB Merito w Gdańsku. Projekt został napisany jako praca dyplomowa, "
+        "temat nie został wybrany przypadkowo, od kilku lat trenuję bieganie i w ostatnich dwóch edycjach Półmaratonu Rzeszowskiego Adam Rybiński zdobywał "
+        "1. miejsce w kategorii Najlepszy Rzeszowianin.", style={'margin': '5px'}
 
-    ], style={'width': '49%', 'float': 'right', 'background-color': 'lightgray', 'text-align': 'center', 'margin': '5px',  'height': '90vh'}),
+    ),
+        html.Img(src='https://github.com/rybinski92/halfmarathon_rzeszow/blob/main/ar%20mielec.jpg?raw=true',
+                 style={'height':'400px', 'position': 'absolute', 'left':'62%', 'margin': '20px'})
+
+    ], style={'width': '49%', 'float': 'right', 'background-color': 'white', 'text-align': 'left', 'margin': '5px',  'height': '90vh'}),
 
 
 
